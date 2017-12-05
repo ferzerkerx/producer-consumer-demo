@@ -1,0 +1,11 @@
+language: java
+jdk:
+  - oraclejdk8
+
+addons:
+  sonarcloud:
+    organization: "ferzerkerx-github"
+    token:
+      secure: "WnTDUnLoYOIALu5jTSehKub4w72AgSGdZwlVR26iNpEpfiPQRRQ0IxtXwYToUlsglmuV5AAtl7If3TkzIO/hcTpw4yyw5LeytGDXMbupQ2aDDzDldFQRZPCAZLCS3GKMpRjp4lr3mux4MnletTpkuGsQunZ1lq8VQx9Dp+SW4aZEWcqGJKBelyoDSxfydaM2EMa44/iPvX+6LJso1nbj5CK2DFX0AM1odPNwacbmqz/26otCQ8F+MhbAICECFuLuFW8qqlUMwl1nV/9km0sUT1pMDxbJrwArFp6pHCH5P4Q30vJOX3C0isSQEVlP+zIRKw9/eS4uoq2BjukVowEWywdOsoZGS7Dnj/7a7u2fvctzQmhOaM/HIMXr34CzLYr4b5C6nV/ZARKAwGf9dlsgwbyajjgIC2cVV7Ovo8K2ORMPobMZKE5GfqoMU/5iZVjlOa6mMf/8UG7YwBc6wiB5yRRoZLW24+/U/cb/mTt7tId2CXCo03lW85Uj40gv5QmBpAEizqguVwMce5CU5dpmzzslRBAcy9teBU6KtDO948VWPXBlKCoguQ2uWvRlwAadDL3IWSoeTXstJc33q4czvKEc0b1gC860gjPewtsvePB7UM1R4H8U/4iDvaY04kqJkb/jh2S30kuBjJu6LnntLomszh+oGjGqsm2dB9kF0qo="
+script:
+  - "mvn clean install sonar:sonar"

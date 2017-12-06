@@ -12,6 +12,7 @@ env:
 
 install:
   - "mvn clean compile"
+  - "npm install -g snyk"
 
 script:
   - "mvn install sonar:sonar"

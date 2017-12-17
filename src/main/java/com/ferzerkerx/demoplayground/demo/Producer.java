@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nonnull;
+import java.util.Random;
 import java.util.Spliterator;
 import java.util.concurrent.BlockingQueue;
 import java.util.function.Consumer;
@@ -33,7 +34,7 @@ public class Producer implements AutoCloseable {
     public void produce() {
         try {
             while (!currentThread().isInterrupted()) {
-                Integer number = (int) (Math.random() * 3000);
+                Integer number = new Random().nextInt();
                 boolean offer = queue.offer(number);
                 if (!offer) {
                     LOG.warn("could not offer to queue {}", number);

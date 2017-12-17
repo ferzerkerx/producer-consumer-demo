@@ -22,17 +22,12 @@ public class DemoApplication implements CommandLineRunner {
 
         SpringApplication app = new SpringApplication(DemoApplication.class);
         try (final ConfigurableApplicationContext ignored = app.run(args)) {
-
-        } catch (final Exception e) {
-            //noinspection CallToPrintStackTrace
-            e.printStackTrace();
-            //noinspection CallToSystemExit
-            System.exit(1);
+            LOG.info("Application started...");
         }
     }
 
 
-    private final BlockingQueue<Integer> queue = new ArrayBlockingQueue<Integer>(1000);
+    private final BlockingQueue<Integer> queue = new ArrayBlockingQueue<>(1024);
 
     private boolean isMultipleOfTwo(Integer integer) {
         return integer % 2 == 0;
@@ -51,7 +46,7 @@ public class DemoApplication implements CommandLineRunner {
                 List<Integer> pickedNumbers =
                         numbers.filter(this::isMultipleOfThree)
                                 .filter(this::isMultipleOfTwo)
-                                .limit(50_000)
+                                .limit(1000)
                                 .collect(Collectors.toList());
                 LOG.info("Picked Numbers: {} {}", pickedNumbers.size() , pickedNumbers);
             }

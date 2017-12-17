@@ -30,17 +30,16 @@ public class Consumer implements AutoCloseable {
         try {
             while (!currentThread().isInterrupted()) {
                 Integer number = queue.take();
-                LOG.info("Consume:" + number);
+                LOG.info("Consume: {}" , number);
             }
         } catch (InterruptedException e) {
-            e.printStackTrace();
             currentThread().interrupt();
         }
     }
 
 
     @Override
-    public void close() throws Exception {
+    public void close() {
         LOG.info("Killing threads....");
         waitForThreadIsDone(consumerThread);
     }

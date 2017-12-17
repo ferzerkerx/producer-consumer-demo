@@ -5,12 +5,12 @@ import javax.annotation.Nonnull;
 import static java.lang.Thread.currentThread;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
-public final class Util {
+final class Util {
 
     private Util() {
     }
 
-    public static void waitForThreadIsDone(@Nonnull Thread thread) {
+    static void waitForThreadIsDone(@Nonnull Thread thread) {
         boolean wasInterrupted = false;
         try {
             while (thread.isAlive()) {
@@ -18,7 +18,6 @@ public final class Util {
                 try {
                     thread.join(SECONDS.toMillis(10));
                 } catch (InterruptedException ignored) {
-                    ignored.printStackTrace();
                     wasInterrupted = true;
                 }
             }

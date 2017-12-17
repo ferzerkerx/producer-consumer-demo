@@ -34,11 +34,12 @@ public class Producer implements AutoCloseable {
         try {
             while (!currentThread().isInterrupted()) {
                 Integer number = (int) (Math.random() * 3000);
-                queue.offer(number);
-//                LOG.info("Produce:" + number);
+                boolean offer = queue.offer(number);
+                if (!offer) {
+                    LOG.warn("could not offer to queue {}", number);
+                }
             }
         } catch (Exception e) {
-            e.printStackTrace();
             currentThread().interrupt();
         }
     }
@@ -78,7 +79,7 @@ public class Producer implements AutoCloseable {
             try {
                 close();
             } catch (Exception ignored) {
-                ignored.printStackTrace();
+                LOG.error("Failed to close stream", ignored);
             }
         });
     }
